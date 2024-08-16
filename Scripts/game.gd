@@ -13,6 +13,9 @@ var idle
 var direction
 var speed
 
+var left_score
+var right_score
+
 func get_spin_speed():
 	const SPIN_SPEED_MAX = 720
 	const SPIN_SPEED_IDLE = 30
@@ -29,7 +32,7 @@ func reset():
 func launch():
 	const LAUNCH_SPEED = 500
 
-	var target = Vector2(rng.randf_range(-1, 1), rng.randf_range(-1, 1))
+	var target = Vector2(rng.randf_range(-1, 1), rng.randf_range(-0.5, 0.5))
 	direction = Vector2.ZERO.direction_to(target)
 	speed = LAUNCH_SPEED
 	idle = false
@@ -37,11 +40,29 @@ func launch():
 func bounce_vert(_area):
 	direction.y = -direction.y
 
-func oob_left(_area):
+func new_game():
+	left_score = 0
+	right_score = 0
 	reset()
 
+func get_winner():
+	const POINTS_TO_WIN = 10
+	print("Left: ", left_score, "; Right: ", right_score)
+	if left_score >= POINTS_TO_WIN:
+		return -1
+	if right_score >= POINTS_TO_WIN:
+		return 1
+	return 0
+
+func oob_left(_area):
+	right_score += 1
+	if get_winner() == 0:
+		reset()
+
 func oob_right(_area):
-	reset()
+	left_score += 1
+	if get_winner() == 0:
+		reset()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,7 +78,7 @@ func _ready():
 	lbound.connect("area_entered", oob_left)
 	rbound.connect("area_entered", oob_right)
 
-	reset()
+	new_game()
 	set_process_input(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
