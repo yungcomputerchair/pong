@@ -5,13 +5,18 @@ extends Node2D
 @onready var bbound = $BotBoundary
 @onready var lbound = $LeftBoundary
 @onready var rbound = $RightBoundary
+@onready var ui = %UI
 
 var left_score
 var right_score
 
+func update_ui():
+	ui.update_scores(left_score, right_score)
+
 func new_game():
 	left_score = 0
 	right_score = 0
+	update_ui()
 	ball.reset()
 
 func get_winner():
@@ -27,11 +32,13 @@ func oob_left(_area):
 	right_score += 1
 	if get_winner() == 0:
 		ball.reset()
+	update_ui()
 
 func oob_right(_area):
 	left_score += 1
 	if get_winner() == 0:
 		ball.reset()
+	update_ui()
 
 func resize():
 	const GOAL_OFFSET = 75
@@ -42,6 +49,7 @@ func resize():
 	rbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
 
 func _ready():
+	RenderingServer.set_default_clear_color(Color.WHITE)
 	tbound.connect("area_entered", ball.wall_bounce)
 	bbound.connect("area_entered", ball.wall_bounce)
 	lbound.connect("area_entered", oob_left)

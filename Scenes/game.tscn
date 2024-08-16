@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsryls3x2ovo0"]
+[gd_scene load_steps=9 format=3 uid="uid://dsryls3x2ovo0"]
 
 [ext_resource type="PackedScene" uid="uid://bmq1en8ohnn3c" path="res://Scenes/ball.tscn" id="1_gpkix"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_qhmga"]
 [ext_resource type="PackedScene" uid="uid://cftmanx3omg2w" path="res://Scenes/boundary.tscn" id="2_5fcsp"]
+[ext_resource type="PackedScene" uid="uid://ml1m2bcdfbkp" path="res://Scenes/ui.tscn" id="4_w6g0h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0dgbe"]
 distance = -325.0
@@ -45,6 +46,13 @@ shape = SubResource("WorldBoundaryShape2D_vtayl")
 
 [node name="CollisionShape2D" parent="RightBoundary" index="0"]
 shape = SubResource("WorldBoundaryShape2D_vgfo6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("4_w6g0h")]
+unique_name_in_owner = true
+size_flags_vertical = 10
 
 [editable path="BotBoundary"]
 [editable path="TopBoundary"]
