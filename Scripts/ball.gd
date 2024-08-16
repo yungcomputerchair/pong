@@ -28,6 +28,15 @@ func launch():
 
 func wall_bounce(_area):
 	direction.y = -direction.y
+	
+func paddle_bounce(_area, paddle):
+	var paddle_rect = paddle.get_node("CollisionShape2D").shape
+	var dy = (position.y - paddle.position.y) / paddle_rect.size.y
+	var my = speed * dy
+	var mx = speed * (1 - dy)
+	if paddle.position.x > position.x:
+		mx = -mx
+	direction = Vector2(mx, my).normalized()
 
 func _ready():
 	reset(true)

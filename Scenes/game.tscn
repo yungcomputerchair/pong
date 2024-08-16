@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsryls3x2ovo0"]
+[gd_scene load_steps=10 format=3 uid="uid://dsryls3x2ovo0"]
 
 [ext_resource type="PackedScene" uid="uid://bmq1en8ohnn3c" path="res://Scenes/ball.tscn" id="1_gpkix"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_qhmga"]
 [ext_resource type="PackedScene" uid="uid://cftmanx3omg2w" path="res://Scenes/boundary.tscn" id="2_5fcsp"]
+[ext_resource type="PackedScene" uid="uid://nkr72f47vs5s" path="res://Scenes/paddle.tscn" id="3_giiqi"]
 [ext_resource type="PackedScene" uid="uid://ml1m2bcdfbkp" path="res://Scenes/ui.tscn" id="4_w6g0h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0dgbe"]
@@ -24,6 +25,12 @@ distance = -650.0
 script = ExtResource("1_qhmga")
 
 [node name="Ball" parent="." instance=ExtResource("1_gpkix")]
+
+[node name="LeftPaddle" parent="." instance=ExtResource("3_giiqi")]
+position = Vector2(-560, 0)
+
+[node name="RightPaddle" parent="." instance=ExtResource("3_giiqi")]
+position = Vector2(560, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

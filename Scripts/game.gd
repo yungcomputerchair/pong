@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var ball = $Ball
+@onready var lpaddle = $LeftPaddle
+@onready var rpaddle = $RightPaddle
 @onready var tbound = $TopBoundary
 @onready var bbound = $BotBoundary
 @onready var lbound = $LeftBoundary
@@ -55,6 +57,8 @@ func resize():
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.WHITE)
+	lpaddle.connect("area_entered", ball.paddle_bounce.bind(lpaddle))
+	rpaddle.connect("area_entered", ball.paddle_bounce.bind(rpaddle))
 	tbound.connect("area_entered", ball.wall_bounce)
 	bbound.connect("area_entered", ball.wall_bounce)
 	lbound.connect("area_entered", oob_left)
