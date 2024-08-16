@@ -49,7 +49,10 @@ func oob_right(_area):
 
 func resize():
 	const GOAL_OFFSET = 75
+	const PADDLE_OFFSET = 25
 	var sz = get_viewport_rect().size
+	lpaddle.position.x = -sz.x / 2 + PADDLE_OFFSET
+	rpaddle.position.x = sz.x / 2 - PADDLE_OFFSET 
 	tbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
 	bbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
 	lbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
