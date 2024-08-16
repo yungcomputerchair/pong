@@ -42,8 +42,8 @@ func resize():
 	rbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
 
 func _ready():
-	tbound.connect("area_entered", ball.bounce_vert)
-	bbound.connect("area_entered", ball.bounce_vert)
+	tbound.connect("area_entered", ball.wall_bounce)
+	bbound.connect("area_entered", ball.wall_bounce)
 	lbound.connect("area_entered", oob_left)
 	rbound.connect("area_entered", oob_right)
 	get_viewport().connect("size_changed", resize)
@@ -51,5 +51,5 @@ func _ready():
 	set_process_input(true)
 
 func _input(_ev):
-	if Input.is_key_pressed(KEY_SPACE) and ball.idle:
+	if Input.is_key_pressed(KEY_SPACE) and not ball.is_processing():
 		ball.launch()
