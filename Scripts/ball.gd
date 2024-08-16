@@ -11,7 +11,6 @@ var speed
 func get_spin_speed():
 	const SPIN_SPEED_MAX = 720
 	const SPIN_SPEED_IDLE = 30
-
 	if idle:
 		return SPIN_SPEED_IDLE
 	return direction.y * SPIN_SPEED_MAX
@@ -24,7 +23,6 @@ func reset():
 
 func launch():
 	const LAUNCH_SPEED = 500
-
 	var target = Vector2(rng.randf_range(-1, 1), rng.randf_range(-0.5, 0.5))
 	direction = Vector2.ZERO.direction_to(target)
 	speed = LAUNCH_SPEED

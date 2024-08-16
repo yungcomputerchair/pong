@@ -47,7 +47,6 @@ func _ready():
 	lbound.connect("area_entered", oob_left)
 	rbound.connect("area_entered", oob_right)
 	get_viewport().connect("size_changed", resize)
-
 	new_game()
 	set_process_input(true)
 
