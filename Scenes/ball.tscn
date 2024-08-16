@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmq1en8ohnn3c"]
+[gd_scene load_steps=4 format=3 uid="uid://bmq1en8ohnn3c"]
 
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_84lnt"]
 [ext_resource type="Texture2D" uid="uid://8ubkgk8l3auo" path="res://Assets/Sprites/ball.png" id="2_7nxht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1r8jy"]
 
 [node name="Ball" type="Area2D"]
 collision_mask = 0
+script = ExtResource("1_84lnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1r8jy")
