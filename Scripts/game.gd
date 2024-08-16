@@ -10,17 +10,20 @@ extends Node2D
 var left_score
 var right_score
 
-func update_ui():
+func update_ui(winner):
 	ui.update_scores(left_score, right_score)
+	if winner != 0:
+		ui.set_winner(winner)
 
 func new_game():
 	left_score = 0
 	right_score = 0
-	update_ui()
+	ui.set_start_text()
+	update_ui(0)
 	ball.reset(true)
 
 func get_winner():
-	const POINTS_TO_WIN = 10
+	const POINTS_TO_WIN = 3
 	print("Left: ", left_score, "; Right: ", right_score)
 	if left_score >= POINTS_TO_WIN:
 		return -1
@@ -28,17 +31,19 @@ func get_winner():
 		return 1
 	return 0
 
+func check_winner():
+	var winner = get_winner()
+	if winner == 0:
+		ball.reset(false)
+	update_ui(winner)
+
 func oob_left(_area):
 	right_score += 1
-	if get_winner() == 0:
-		ball.reset(false)
-	update_ui()
+	check_winner()
 
 func oob_right(_area):
 	left_score += 1
-	if get_winner() == 0:
-		ball.reset(false)
-	update_ui()
+	check_winner()
 
 func resize():
 	const GOAL_OFFSET = 75
@@ -60,6 +65,7 @@ func _ready():
 
 func _input(_ev):
 	if Input.is_key_pressed(KEY_SPACE) and not ball.is_processing():
+		ui.clear_start_text()
 		ball.launch()
 	if Input.is_key_pressed(KEY_R):
 		new_game()
