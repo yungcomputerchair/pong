@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_84lnt"]
 [ext_resource type="Texture2D" uid="uid://8ubkgk8l3auo" path="res://Assets/Sprites/ball.png" id="2_7nxht"]
-[ext_resource type="Shape2D" uid="uid://dcirc6v70jhxn" path="res://Resources/ball_shape.tres" id="2_vnqgr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1r8jy"]
 
 [node name="Ball" type="Area2D"]
 script = ExtResource("1_84lnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = ExtResource("2_vnqgr")
+shape = SubResource("CircleShape2D_1r8jy")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
