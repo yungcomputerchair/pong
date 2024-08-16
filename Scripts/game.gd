@@ -1,10 +1,10 @@
 extends Node2D
 
-var ball
-var tbound
-var bbound
-var lbound
-var rbound
+@onready var ball = $Ball
+@onready var tbound = $TopBoundary
+@onready var bbound = $BotBoundary
+@onready var lbound = $LeftBoundary
+@onready var rbound = $RightBoundary
 
 var left_score
 var right_score
@@ -34,12 +34,6 @@ func oob_right(_area):
 		ball.reset()
 
 func _ready():
-	ball = get_node("Ball")
-	tbound = get_node("TopBoundary")
-	bbound = get_node("BotBoundary")
-	lbound = get_node("LeftBoundary")
-	rbound = get_node("RightBoundary")
-
 	tbound.connect("area_entered", ball.bounce_vert)
 	bbound.connect("area_entered", ball.bounce_vert)
 	lbound.connect("area_entered", oob_left)

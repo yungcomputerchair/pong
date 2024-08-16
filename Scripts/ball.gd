@@ -1,8 +1,8 @@
 extends Area2D
 
-var rng = RandomNumberGenerator.new()
+@onready var sprite = $Sprite2D
 
-var sprite
+var rng = RandomNumberGenerator.new()
 
 var idle
 var direction
@@ -33,7 +33,7 @@ func bounce_vert(_area):
 	direction.y = -direction.y
 
 func _ready():
-	sprite = get_node("Sprite2D")
+	reset()
 
 func _process(delta):
 	sprite.rotate(deg_to_rad(get_spin_speed()) * delta)
