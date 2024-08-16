@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmq1en8ohnn3c"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_84lnt"]
-[ext_resource type="Shape2D" uid="uid://blmdjsxbfp4hv" path="res://Resources/ball_shape.tres" id="1_r2cjk"]
 [ext_resource type="Texture2D" uid="uid://8ubkgk8l3auo" path="res://Assets/Sprites/ball.png" id="2_7nxht"]
+[ext_resource type="Shape2D" uid="uid://dcirc6v70jhxn" path="res://Resources/ball_shape.tres" id="2_vnqgr"]
 
 [node name="Ball" type="Area2D"]
 script = ExtResource("1_84lnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = ExtResource("1_r2cjk")
+shape = ExtResource("2_vnqgr")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
