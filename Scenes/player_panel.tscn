@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjkjjseniuush"]
+[gd_scene load_steps=3 format=3 uid="uid://cjkjjseniuush"]
+
+[ext_resource type="FontFile" uid="uid://dwv164lg2jr5l" path="res://Assets/Fonts/Minecraftia-Regular.ttf" id="1_tab5t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukjq1"]
+font = ExtResource("1_tab5t")
+font_size = 48
 font_color = Color(0, 0, 0, 1)
 
 [node name="Panel" type="VBoxContainer"]
