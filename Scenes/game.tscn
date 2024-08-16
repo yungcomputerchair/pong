@@ -1,9 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsryls3x2ovo0"]
+[gd_scene load_steps=8 format=3 uid="uid://dsryls3x2ovo0"]
 
 [ext_resource type="PackedScene" uid="uid://bmq1en8ohnn3c" path="res://Scenes/ball.tscn" id="1_gpkix"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_qhmga"]
+[ext_resource type="PackedScene" uid="uid://cftmanx3omg2w" path="res://Scenes/boundary.tscn" id="2_5fcsp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0dgbe"]
+distance = -325.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xgqh1"]
+normal = Vector2(0, 1)
+distance = -325.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vtayl"]
+normal = Vector2(1, 0)
+distance = -650.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vgfo6"]
+normal = Vector2(-1, 0)
+distance = -650.0
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_qhmga")
 
 [node name="Ball" parent="." instance=ExtResource("1_gpkix")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BotBoundary" parent="." instance=ExtResource("2_5fcsp")]
+
+[node name="CollisionShape2D" parent="BotBoundary" index="0"]
+shape = SubResource("WorldBoundaryShape2D_0dgbe")
+
+[node name="TopBoundary" parent="." instance=ExtResource("2_5fcsp")]
+
+[node name="CollisionShape2D" parent="TopBoundary" index="0"]
+shape = SubResource("WorldBoundaryShape2D_xgqh1")
+
+[node name="LeftBoundary" parent="." instance=ExtResource("2_5fcsp")]
+
+[node name="CollisionShape2D" parent="LeftBoundary" index="0"]
+shape = SubResource("WorldBoundaryShape2D_vtayl")
+
+[node name="RightBoundary" parent="." instance=ExtResource("2_5fcsp")]
+
+[node name="CollisionShape2D" parent="RightBoundary" index="0"]
+shape = SubResource("WorldBoundaryShape2D_vgfo6")
+
+[editable path="BotBoundary"]
+[editable path="TopBoundary"]
+[editable path="LeftBoundary"]
+[editable path="RightBoundary"]
