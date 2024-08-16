@@ -17,7 +17,7 @@ func new_game():
 	left_score = 0
 	right_score = 0
 	update_ui()
-	ball.reset()
+	ball.reset(true)
 
 func get_winner():
 	const POINTS_TO_WIN = 10
@@ -31,13 +31,13 @@ func get_winner():
 func oob_left(_area):
 	right_score += 1
 	if get_winner() == 0:
-		ball.reset()
+		ball.reset(false)
 	update_ui()
 
 func oob_right(_area):
 	left_score += 1
 	if get_winner() == 0:
-		ball.reset()
+		ball.reset(false)
 	update_ui()
 
 func resize():
@@ -61,3 +61,5 @@ func _ready():
 func _input(_ev):
 	if Input.is_key_pressed(KEY_SPACE) and not ball.is_processing():
 		ball.launch()
+	if Input.is_key_pressed(KEY_R):
+		new_game()
