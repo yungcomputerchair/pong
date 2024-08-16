@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://dsryls3x2ovo0"]
+[gd_scene load_steps=2 format=3 uid="uid://dsryls3x2ovo0"]
+
+[ext_resource type="PackedScene" uid="uid://bmq1en8ohnn3c" path="res://Scenes/ball.tscn" id="1_gpkix"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Ball" parent="." instance=ExtResource("1_gpkix")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
