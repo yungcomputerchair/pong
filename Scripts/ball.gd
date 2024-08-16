@@ -19,6 +19,7 @@ func get_spin_speed():
 func reset():
 	idle = true
 	speed = 0
+	direction = Vector2.ZERO
 	position = Vector2.ZERO
 
 func launch():
@@ -30,6 +31,8 @@ func launch():
 	idle = false
 
 func bounce_vert(_area):
+	if idle:
+		pass
 	direction.y = -direction.y
 
 func _ready():

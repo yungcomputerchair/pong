@@ -33,17 +33,23 @@ func oob_right(_area):
 	if get_winner() == 0:
 		ball.reset()
 
+func resize():
+	const GOAL_OFFSET = 75
+	var sz = get_viewport_rect().size
+	tbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
+	bbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
+	lbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
+	rbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
+
 func _ready():
 	tbound.connect("area_entered", ball.bounce_vert)
 	bbound.connect("area_entered", ball.bounce_vert)
 	lbound.connect("area_entered", oob_left)
 	rbound.connect("area_entered", oob_right)
+	get_viewport().connect("size_changed", resize)
 
 	new_game()
 	set_process_input(true)
-
-func _process(_delta):
-	pass
 
 func _input(_ev):
 	if Input.is_key_pressed(KEY_SPACE) and ball.idle:
