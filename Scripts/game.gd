@@ -12,6 +12,9 @@ extends Node2D
 var left_score
 var right_score
 
+var paddle_min
+var paddle_max
+
 func update_ui(winner):
 	ui.update_scores(left_score, right_score)
 	if winner != 0:
@@ -53,10 +56,17 @@ func resize():
 	var sz = get_viewport_rect().size
 	lpaddle.position.x = -sz.x / 2 + PADDLE_OFFSET
 	rpaddle.position.x = sz.x / 2 - PADDLE_OFFSET 
+	paddle_min = -sz.y / 2 + PADDLE_OFFSET * 2.5
+	paddle_max = sz.y / 2 - PADDLE_OFFSET * 2.5
 	tbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
 	bbound.get_node("CollisionShape2D").shape.distance = -sz.y / 2
 	lbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
 	rbound.get_node("CollisionShape2D").shape.distance = -sz.x / 2 - GOAL_OFFSET
+	
+func move_paddle(paddle, dir):
+	const PADDLE_MOVE_SPEED = 500
+	var dy = dir * PADDLE_MOVE_SPEED
+	paddle.position.y = clamp(paddle.position.y + dy, paddle_min, paddle_max)
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color.WHITE)
@@ -67,6 +77,7 @@ func _ready():
 	lbound.connect("area_entered", oob_left)
 	rbound.connect("area_entered", oob_right)
 	get_viewport().connect("size_changed", resize)
+	resize()
 	new_game()
 	set_process_input(true)
 
@@ -76,3 +87,13 @@ func _input(_ev):
 		ball.launch()
 	if Input.is_key_pressed(KEY_R):
 		new_game()
+
+func _process(delta):
+	if Input.is_key_pressed(KEY_W):
+		move_paddle(lpaddle, -1 * delta)
+	if Input.is_key_pressed(KEY_S):
+		move_paddle(lpaddle, 1 * delta)
+	if Input.is_key_pressed(KEY_UP):
+		move_paddle(rpaddle, -1 * delta)
+	if Input.is_key_pressed(KEY_DOWN):
+		move_paddle(rpaddle, 1 * delta)
