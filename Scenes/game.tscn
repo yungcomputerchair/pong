@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsryls3x2ovo0"]
+[gd_scene load_steps=11 format=3 uid="uid://dsryls3x2ovo0"]
 
 [ext_resource type="PackedScene" uid="uid://bmq1en8ohnn3c" path="res://Scenes/ball.tscn" id="1_gpkix"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_qhmga"]
 [ext_resource type="PackedScene" uid="uid://cftmanx3omg2w" path="res://Scenes/boundary.tscn" id="2_5fcsp"]
 [ext_resource type="PackedScene" uid="uid://nkr72f47vs5s" path="res://Scenes/paddle.tscn" id="3_giiqi"]
 [ext_resource type="PackedScene" uid="uid://ml1m2bcdfbkp" path="res://Scenes/ui.tscn" id="4_w6g0h"]
+[ext_resource type="AudioStream" uid="uid://32jqf0fdhb7b" path="res://Assets/Audio/cat.mp3" id="6_ylwb5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0dgbe"]
 distance = -325.0
@@ -60,6 +61,10 @@ layer = -1
 [node name="UI" parent="CanvasLayer" instance=ExtResource("4_w6g0h")]
 unique_name_in_owner = true
 size_flags_vertical = 10
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ylwb5")
+autoplay = true
 
 [editable path="BotBoundary"]
 [editable path="TopBoundary"]
