@@ -4,7 +4,8 @@ This is a faithful recreation of one of my long-lost high school projects that I
 
 ## Controls
 W/S - move left paddle up/down
+
 ⬆/⬇ - move right paddle up/down
 
 ## Try it
-GitHub Pages doesn't currently support Godot 4 HTML projects, so you can instead play at https://ycc.dev/pong/
+GitHub Pages doesn't currently support Godot 4 HTML projects, but you can instead play at https://ycc.dev/pong/
