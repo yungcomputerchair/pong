@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var sprite = $Sprite2D
+@onready var wall_bounce_sfx = $WallBounceSound
+@onready var paddle_bounce_sfx = $PaddleBounceSound
 
 var rng = RandomNumberGenerator.new()
 
@@ -27,9 +29,11 @@ func launch():
 	set_process(true)
 
 func wall_bounce(_area):
+	wall_bounce_sfx.play()
 	direction.y = -direction.y
 	
 func paddle_bounce(_area, paddle):
+	paddle_bounce_sfx.play()
 	var paddle_rect = paddle.get_node("CollisionShape2D").shape
 	var dy = (position.y - paddle.position.y) / paddle_rect.size.y
 	var my = speed * dy

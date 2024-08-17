@@ -8,6 +8,7 @@ extends Node2D
 @onready var lbound = $LeftBoundary
 @onready var rbound = $RightBoundary
 @onready var ui = %UI
+@onready var point_sfx = $PointSound
 
 var left_score
 var right_score
@@ -37,6 +38,7 @@ func get_winner():
 	return 0
 
 func check_winner():
+	point_sfx.play()
 	var winner = get_winner()
 	if winner == 0:
 		ball.reset(false)

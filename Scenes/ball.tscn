@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmq1en8ohnn3c"]
+[gd_scene load_steps=6 format=3 uid="uid://bmq1en8ohnn3c"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_84lnt"]
 [ext_resource type="Texture2D" uid="uid://8ubkgk8l3auo" path="res://Assets/Sprites/ball.png" id="2_7nxht"]
+[ext_resource type="AudioStream" uid="uid://cgl1wuiix4hxg" path="res://Assets/Audio/wall.wav" id="3_cejly"]
+[ext_resource type="AudioStream" uid="uid://dfye8cu1w6i8o" path="res://Assets/Audio/jump.wav" id="4_vdf0y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1r8jy"]
 
@@ -17,3 +19,12 @@ debug_color = Color(1, 0, 0, 0.419608)
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(20, 20)
 texture = ExtResource("2_7nxht")
+
+[node name="WallBounceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cejly")
+volume_db = -9.37
+
+[node name="PaddleBounceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vdf0y")
+volume_db = -9.369
+pitch_scale = 0.68
