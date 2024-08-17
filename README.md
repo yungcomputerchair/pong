@@ -9,3 +9,6 @@ W/S - move left paddle up/down
 
 ## Try it
 GitHub Pages doesn't currently support Godot 4 HTML projects, but you can instead play at https://ycc.dev/pong/
+
+## Credits
+Music: C418 - Cat
